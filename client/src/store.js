@@ -61,7 +61,7 @@ export default new Vuex.Store({
   actions: {
     allArticle(context){
       console.log('disini')
-      axios.get('http://localhost:3000/article/all-article')
+      axios.get('http://35.197.142.60/article/all-article')
       .then(article => {
         console.log(article.data);
         let post = article.data
@@ -78,7 +78,7 @@ export default new Vuex.Store({
     article({ commit }, id){
       console.log('ini data',id)
 
-      axios.get(`http://localhost:3000/article/${id}`)
+      axios.get(`http://35.197.142.60/article/${id}`)
       .then(article => {
         console.log(article.data[0])
         commit('setDetail', article.data[0])
@@ -93,7 +93,7 @@ export default new Vuex.Store({
 
     comment({ commit }, id){
 
-      axios.post(`http://localhost:3000/comment/post/${id}`,{
+      axios.post(`http://35.197.142.60/comment/post/${id}`,{
         email: this.state.comment_email,
         content: this.state.comment_content
       })
@@ -102,11 +102,14 @@ export default new Vuex.Store({
         this.state.comment_email = ''
         this.state.comment_content = ''
       })
+      .catch(err => {
+        console.log(err)
+      })
       
     },
 
     adminLogin({commit}){
-      axios.post('http://localhost:3000/users/login',{
+      axios.post('http://35.197.142.60/users/login',{
         uname_email: this.state.admin_email,
         password: this.state.admin_pass
       })
@@ -115,12 +118,15 @@ export default new Vuex.Store({
         localStorage.setItem('admToken', admin.data.token)
         router.push('/dashboard')
       })
+      .catch(err => {
+        console.log(err)
+      })
     },
 
     getAdmin({ commit }) {
       console.log('alive')
       let token = localStorage.getItem('admToken')
-      axios.get('http://localhost:3000/users/profile', {
+      axios.get('http://35.197.142.60/users/profile', {
         headers: {
           token: token
         }
@@ -132,6 +138,9 @@ export default new Vuex.Store({
         commit('setUsername', profile.data.username)
         commit('setAdminEmail', profile.data.email)
       })
+      .catch(err => {
+        console.log(err)
+      })
     },
 
     editAdmin({ commit }){
@@ -141,7 +150,7 @@ export default new Vuex.Store({
         email: this.state.admin_email
       }
       let token = localStorage.getItem('admToken')
-      axios.put('http://localhost:3000/users/edit',profile,{
+      axios.put('http://35.197.142.60/users/edit',profile,{
         headers: {
           token: token
         }
@@ -149,6 +158,9 @@ export default new Vuex.Store({
       .then(result => {
         console.log(result)
         commit('setProfile', profile)
+      })
+      .catch(err => {
+        console.log(err)
       })
     },
 
@@ -159,8 +171,8 @@ export default new Vuex.Store({
         title: this.state.article_title,
         article: this.state.article_content
       }
-
-      axios.post('http://localhost:3000/article/add-article', article, {
+      console.log(article)
+      axios.post('http://35.197.142.60/article/add-article', article, {
         headers: {
           token: token
         }
@@ -169,6 +181,9 @@ export default new Vuex.Store({
         commit('setArticle', post.data.article)
         this.state.article_title = ''
         this.state.article_content = ''
+      })
+      .catch(err => {
+        console.log(err)
       })
     },
 
@@ -179,18 +194,24 @@ export default new Vuex.Store({
         title: this.state.article_title,
         article: this.state.article_content
       }
-      axios.put(`http://localhost:3000/article/edit-article/${id}`,article)
+      axios.put(`http://35.197.142.60/article/edit-article/${id}`,article)
       .then(result => {
         console.log(result)
+      })
+      .catch(err => {
+        console.log(err)
       })
     },
 
     deleteComment({commit},id){
       console.log(id.article, 'dan', id.comment)   
 
-      axios.delete(`http://localhost:3000/comment/delete/${id.article}/${id.comment}`)
+      axios.delete(`http://35.197.142.60/comment/delete/${id.article}/${id.comment}`)
       .then(result => {
         commit('setDetail', result.data.article[0])
+      })
+      .catch(err => {
+        console.log(err)
       })
     },
 

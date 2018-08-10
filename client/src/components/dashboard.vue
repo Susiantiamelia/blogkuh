@@ -5,8 +5,8 @@
             <v-flex xs4>
                 <v-card color="white">
                     <br><br><br>
-                    <h3>About Me</h3>
-                    <br><br><br>
+                    <h3>Profile</h3>
+                    <br>
                     <v-container>
                         <v-flex>
                             <v-text-field
@@ -20,8 +20,7 @@
                         <v-flex>
                             <v-text-field
                                 label="Email"
-            
-                              v-model="admin_email"
+                                v-model="admin_email"
                                 box
                             ></v-text-field>
                         </v-flex>
@@ -36,7 +35,7 @@
                         </v-flex>
                     </v-container>
                           <v-btn outline color="black" @click="editAdmin">Edit</v-btn>
-                    <br><br><br><br><br>
+                    <br><br><br>
                 </v-card>
             </v-flex>
              <v-flex xs7 style="padding-left: 20px">
@@ -47,6 +46,7 @@
                         <v-flex>
                         <v-text-field
                             label="Title"
+                            v-model="article_title"
                         ></v-text-field>
                         </v-flex>
                     </v-container>
@@ -54,9 +54,10 @@
                         <v-textarea
                         name="input-7-1"
                         label="Your Idea"
+                        v-model="article_content"
                         ></v-textarea>
                     </v-container>
-                          <v-btn outline color="black" >Submit</v-btn>
+                          <v-btn outline color="black" @click="postArticle">Submit</v-btn>
                     <br><br>
                 </v-card>
             </v-flex>

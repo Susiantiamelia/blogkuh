@@ -4,7 +4,6 @@
             <v-layout justify-center>
                 <v-container>
                 <v-flex>
-                    
                         <v-card flat>
                                 <v-avatar
                             size="200px"

@@ -1,7 +1,7 @@
 <template>
      <v-jumbotron
     dark
-    src="https://cdn.pixabay.com/photo/2016/11/19/11/14/beach-1838668_960_720.jpg"
+    src="https://storage.cloud.google.com/blogkuh.gogounicorn.party/beach-1838668.jpg?_ga=2.241161091.-1234502123.1531894296&_gac=1.12805829.1532590235.CjwKCAjw4uXaBRAcEiwAuAUz8B9xJ5l2OylFwGP3EmjWkbwwSXQxdmwCM4pu8aEKY2Kyw9LCOldJexoCefIQAvD_BwE"
   >
     <v-container fill-height>
       <v-layout align-center>

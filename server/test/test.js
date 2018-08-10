@@ -5,12 +5,41 @@ chai.use(chaiHTTP)
 
 
 var User = require('../models/user.js')
+let userId = ''
 
 let url = 'http://localhost:3000'
 
+beforeEach(function() {
+    User.createOne({
+        fullname: 'fullname',
+        username: 'username',
+        email: 'email@mail.com',
+        password: 'password',
+        article_list: []
+    })
+    .then(result => {
+        userId = result._id
+    })
+    .catch(err => {
+        console.log(err);
+        
+    })
+});
 
+afterEach(function(){
+    User.deleteOne({_id: userId})
+    .then(result => {
+        console.log('successs');
+        
+    })
+    .catch(err => {
+        console.log(err);
+        
+    })
+})
 
 describe('blog testing', function(){
+
 
     it('POST /register should return user data', function(done){
         chai.request(url)
