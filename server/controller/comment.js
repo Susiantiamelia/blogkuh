@@ -1,11 +1,17 @@
 const Article = require('../models/article.js')
 const Comments = require('../models/comment.js')
+const jwt = require('jsonwebtoken')
+const key = process.env.SECRET_KEY;
+
 
 class Commentar{
     static create(req,res){
+        let token = req.headers.token
+        let user = jwt.verify(token, key)
+
         Comments.create({
             articleID: req.params.id,
-            email: req.body.email,
+            user: user.id,
             content: req.body.content
         })
         .then(comment => {
@@ -41,6 +47,16 @@ class Commentar{
         .catch(err => {
             res.status(500).json(err.message)
         })
+    }
+
+    static all(req,res){
+        Comments.find({articleID: req.params.id}).populate('user')
+            .then(result => {
+                res.status(200).json(result)
+            })
+            .catch(err => {
+                res.status(500).json(err.message)
+            })
     }
 }
 

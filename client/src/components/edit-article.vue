@@ -13,13 +13,13 @@
                             </v-avatar>
                             <br><br>
                                 <v-text-field
-                                    label="Regular"
+                                    label="Title"
                                     v-model="article_title"
                                 ></v-text-field>
                             <br><br>
                                 <v-textarea
                                 name="input-7-1"
-                                label="Default style"
+                                label="Content"
                                 v-model="article_content"
                                 ></v-textarea>
                             <v-btn outline color="black" @click="editArticle(detail._id)">Edit</v-btn>

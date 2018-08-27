@@ -16,7 +16,7 @@ class Users{
             article_list: []
         })
         .then(user => {
-            res.status(200).json({msg: 'Successfully register', user: user})
+            res.status(200).json({msg: 'Successfully register, please login', user: user})
         })
         .catch(err => {
             res.status(500).json(err.message)
@@ -54,7 +54,7 @@ class Users{
             email: req.body.email
         })
         .then(result => {
-            res.status(200).json({msg: 'User updated'})
+            res.status(200).json({msg: 'User profile succesfully updated!'})
         })
         .catch(err => {
             res.status(500).json(err.message)
@@ -65,7 +65,7 @@ class Users{
         let tokenUser = req.headers.token
         let user = jwt.verify(tokenUser, key)
         console.log()
-        User.find({_id: user.id})
+        User.find({_id: user.id}).populate('article_list')
         .then(profile => {
             res.status(200).json(profile[0])
         })
