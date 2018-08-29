@@ -35,7 +35,7 @@ export default {
   methods: {
     allArticle(){
       console.log('disini')
-      axios.get('http://localhost:3000/article/all-article')
+      axios.get('http://35.197.142.60/article/all-article')
       .then(article => {
         let post = article.data
 

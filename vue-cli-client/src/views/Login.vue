@@ -32,7 +32,7 @@ export default {
   methods: {
     login (value) {
       console.log(value);
-      axios.post('http://localhost:3000/users/login',value)
+      axios.post('http://35.197.142.60/users/login',value)
       .then(user => {
         console.log(user);
         localStorage.setItem('token', user.data.token)
@@ -45,7 +45,7 @@ export default {
     },
     regist(value){
       console.log(value);
-      axios.post('http://localhost:3000/users/register',value)
+      axios.post('http://35.197.142.60/users/register',value)
       .then(result => {
         swal({
           title: result.data.msg,

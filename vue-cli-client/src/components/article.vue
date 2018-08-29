@@ -76,7 +76,7 @@ export default {
     comment(){
       let token = localStorage.getItem('token') || false
       if(token){
-        axios.post(`http://localhost:3000/comment/post/${this.id}`,{
+        axios.post(`http://35.197.142.60/comment/post/${this.id}`,{
           content: this.content
         },{
           headers: {
@@ -110,7 +110,7 @@ export default {
     },
     allarticle(id){
       axios
-        .get(`http://localhost:3000/article/${id}`)
+        .get(`http://35.197.142.60/article/${id}`)
         .then(article => {
           this.article = article.data[0];
         })
@@ -123,7 +123,7 @@ export default {
     },
     allcomment(id){
       axios
-        .get(`http://localhost:3000/comment/comment/${id}`)
+        .get(`http://35.197.142.60/comment/comment/${id}`)
         .then(comment => {
           this.comments = comment.data
         })

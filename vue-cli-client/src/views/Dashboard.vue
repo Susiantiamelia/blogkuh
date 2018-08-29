@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     profile(){
-      axios.get('http://localhost:3000/users/profile', {
+      axios.get('http://35.197.142.60/users/profile', {
         headers: {
           token: this.token
         }
@@ -66,7 +66,7 @@ export default {
     },
     edit(value){
       console.log(value);
-      axios.put('http://localhost:3000/users/edit',value,{
+      axios.put('http://35.197.142.60/users/edit',value,{
         headers: {
           token: this.token
         }
@@ -88,7 +88,7 @@ export default {
     },
     post(value){
       console.log(value);
-      axios.post('http://localhost:3000/article/add-article', value, {
+      axios.post('http://35.197.142.60/article/add-article', value, {
         headers: {
           token: this.token
         }

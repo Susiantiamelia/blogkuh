@@ -78,7 +78,7 @@ export default {
   methods: {
     allarticle(id){
       axios
-        .get(`http://localhost:3000/article/${id}`)
+        .get(`http://35.197.142.60/article/${id}`)
         .then(article => {
           this.article = article.data[0];
           console.log(this.article);
@@ -93,7 +93,7 @@ export default {
     },
     allcomment(id){
       axios
-        .get(`http://localhost:3000/comment/comment/${id}`)
+        .get(`http://35.197.142.60/comment/comment/${id}`)
         .then(comment => {
           this.comments = comment.data
         })
@@ -107,7 +107,7 @@ export default {
     deleteComment(id){
       console.log(id.article, 'dan', id.comment)   
 
-      axios.delete(`http://localhost:3000/comment/delete/${this.id}/${id}`, {
+      axios.delete(`http://35.197.142.60/comment/delete/${this.id}/${id}`, {
         headers: {
           token: localStorage.getItem('token')
         }
@@ -127,7 +127,7 @@ export default {
       })
     },
     deleteArticle(){
-      axios.delete(`http://localhost:3000/article/delete-article/${this.id}`, {
+      axios.delete(`http://35.197.142.60/article/delete-article/${this.id}`, {
         headers: {
           token: localStorage.getItem('token')
         }
