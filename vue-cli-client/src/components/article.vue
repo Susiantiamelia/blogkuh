@@ -72,6 +72,11 @@ export default {
       this.allcomment(this.id)
     }
   },
+  created() {
+    this.id = this.$route.params.id;
+    this.allarticle(this.$route.params.id)
+    this.allcomment(this.$route.params.id)
+  },
   methods: {
     comment(){
       let token = localStorage.getItem('token') || false

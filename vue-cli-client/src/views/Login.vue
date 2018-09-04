@@ -29,6 +29,11 @@ export default {
       token: localStorage.getItem('token') || false
     }
   },
+  created() {
+    if(this.token){
+      this.$router.push('/dashboard')
+    }
+  },
   methods: {
     login (value) {
       console.log(value);

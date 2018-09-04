@@ -75,6 +75,11 @@ export default {
       this.allcomment(this.id)
     }
   },
+  created() {
+    this.id = this.$route.params.id;
+    this.allarticle(this.$route.params.id)
+    this.allcomment(this.$route.params.id)
+  },
   methods: {
     allarticle(id){
       axios
@@ -105,46 +110,74 @@ export default {
         })
     },
     deleteComment(id){
-      console.log(id.article, 'dan', id.comment)   
-
-      axios.delete(`http://35.197.142.60/comment/delete/${this.id}/${id}`, {
-        headers: {
-          token: localStorage.getItem('token')
+       
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      })
+      .then(confirm => {
+        if(confirm.value){
+          axios.delete(`http://35.197.142.60/comment/delete/${this.id}/${id}`, {
+            headers: {
+              token: localStorage.getItem('token')
+            }
+          })
+          .then(result => {
+            this.allcomment(this.id)
+            swal({
+              title: 'succesfully delete comment!',
+              type: "success",
+            });
+          })
+          .catch(err => {
+            swal({
+              title: `${err.message}`,
+              type: "error",
+            });
+          })
         }
       })
-      .then(result => {
-        this.allcomment(this.id)
-        swal({
-          title: 'succesfully delete comment!',
-          type: "success",
-        });
-      })
-      .catch(err => {
-        swal({
-          title: `${err.message}`,
-          type: "error",
-        });
-      })
+
     },
     deleteArticle(){
-      axios.delete(`http://35.197.142.60/article/delete-article/${this.id}`, {
-        headers: {
-          token: localStorage.getItem('token')
+
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      })
+      .then(confirm => {
+        if(confirm.value){
+          axios.delete(`http://35.197.142.60/article/delete-article/${this.id}`, {
+            headers: {
+              token: localStorage.getItem('token')
+            }
+          })
+            .then(result => {
+              swal({
+                title: 'succesfully delete article!',
+                type: "success",
+              });
+              this.$router.push('/dashboard')
+            })
+            .catch(err => {
+              swal({
+                title: `${err.message}`,
+                type: "error",
+              });
+            })
         }
       })
-        .then(result => {
-          swal({
-            title: 'succesfully delete article!',
-            type: "success",
-          });
-          this.$router.push('/dashboard')
-        })
-        .catch(err => {
-          swal({
-            title: `${err.message}`,
-            type: "error",
-          });
-        })
+      
     },
     editArticle(){
       let article = {

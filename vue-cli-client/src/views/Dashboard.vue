@@ -110,7 +110,12 @@ export default {
     }
   },
   created() {
-    this.profile()
+    if(this.token){
+      this.profile()
+    } else {
+      this.$router.push('/register')
+    }
+    
   },
 }
 </script>
